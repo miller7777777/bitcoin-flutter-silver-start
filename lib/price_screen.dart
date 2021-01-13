@@ -29,6 +29,8 @@ class _PriceScreenState extends State<PriceScreen> {
         setState(() {
           //TODO 2: Call getData() when the picker/dropdown changes.
           selectedCurrency = value;
+          getData(selectedCurrency);
+          print(selectedCurrency);
         });
       },
     );
@@ -45,7 +47,10 @@ class _PriceScreenState extends State<PriceScreen> {
       itemExtent: 32.0,
       onSelectedItemChanged: (selectedIndex) {
         print(selectedIndex);
-        //TODO 1: Save the selected currency to the property selectedCurrency
+        selectedCurrency = pickerItems[selectedIndex].data;
+        print(selectedCurrency);
+        getData(selectedCurrency);
+
         //TODO 2: Call getData() when the picker/dropdown changes.
       },
       children: pickerItems,
@@ -53,10 +58,11 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   String bitcoinValue = '?';
+  // String selectedCur = "";
 
-  void getData() async {
+  void getData(String selectedCurrency) async {
     try {
-      double data = await CoinData().getCoinData();
+      double data = await CoinData(selectedCurrency).getCoinData();
       setState(() {
         bitcoinValue = data.toStringAsFixed(0);
       });
@@ -68,7 +74,7 @@ class _PriceScreenState extends State<PriceScreen> {
   @override
   void initState() {
     super.initState();
-    getData();
+    getData(selectedCurrency);
   }
 
   @override
@@ -93,7 +99,7 @@ class _PriceScreenState extends State<PriceScreen> {
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
                   //TODO 5: Update the currency name depending on the selectedCurrency.
-                  '1 BTC = $bitcoinValue USD',
+                  '1 BTC = $bitcoinValue $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
