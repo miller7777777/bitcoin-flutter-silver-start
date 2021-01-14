@@ -9,7 +9,6 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  //TODO 6: Update the default currency to AUD, the first item in the currencyList.
   String selectedCurrency = 'USD';
 
   DropdownButton<String> androidDropdown() {
@@ -27,7 +26,6 @@ class _PriceScreenState extends State<PriceScreen> {
       items: dropdownItems,
       onChanged: (value) {
         setState(() {
-          //TODO 2: Call getData() when the picker/dropdown changes.
           selectedCurrency = value;
           getData(selectedCurrency);
           print(selectedCurrency);
@@ -50,15 +48,12 @@ class _PriceScreenState extends State<PriceScreen> {
         selectedCurrency = pickerItems[selectedIndex].data;
         print(selectedCurrency);
         getData(selectedCurrency);
-
-        //TODO 2: Call getData() when the picker/dropdown changes.
       },
       children: pickerItems,
     );
   }
 
   String bitcoinValue = '?';
-  // String selectedCur = "";
 
   void getData(String selectedCurrency) async {
     try {
@@ -98,7 +93,6 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  //TODO 5: Update the currency name depending on the selectedCurrency.
                   '1 BTC = $bitcoinValue $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(

@@ -33,15 +33,14 @@ const List<String> cryptoList = [
 ];
 
 const coinAPIURL = 'https://rest.coinapi.io/v1/exchangerate';
-const apiKey = 'E70F119D-F106-4EF5-B199-248E536ABCD5';
+// const apiKey = 'E70F119D-F106-4EF5-B199-248E536ABCD5';
+const apiKey = 'FBF272D4-66B8-4951-BE61-ACDDF58A5D24';
 
 class CoinData {
   String selectedCurrency = 'USD';
 
   CoinData(this.selectedCurrency);
-  //TODO 3: Update getCoinData to take the selectedCurrency as an input.
   Future getCoinData() async {
-    //TODO 4: Update the URL to use the selectedCurrency input.
     String requestURL = '$coinAPIURL/BTC/$selectedCurrency?apikey=$apiKey';
     http.Response response = await http.get(requestURL);
     if (response.statusCode == 200) {
