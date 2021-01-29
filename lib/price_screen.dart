@@ -85,6 +85,24 @@ class _PriceScreenState extends State<PriceScreen> {
     getData(selectedCurrency);
   }
 
+  //этот блок сделал бы код еще более красывым, но из-за моей реализации запроса
+//его не применить, а менять реализацию мне лень;
+
+//   Column makeCards() {
+//     List<CryptoCard> cryptoCards = [];
+
+//     for (String crypto in cryptoList) {
+//       cryptoCards.add(CryptoCard(
+//         cryptoCurrency: crypto,
+//         selectedCurrency: selectedCurrency,
+//         value: isWaiting ? '?' : coinValues[crypto],
+//       ));
+//     }
+// return Column(
+//      crossAxisAlignment: CrossAxisAlignment.stretch,
+//      children: cryptoCards,
+//    );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
